@@ -1,0 +1,4 @@
+public class CpuChangedMessage
+{
+    public string NewCpuState { get; set; }
+}
