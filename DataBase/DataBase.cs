@@ -9,7 +9,7 @@ public class DataBase : IDataBase
 
     public void Save(string filePath)
     {
-        // Сериализация состояния доски в файл
+        
         using (var writer = new StreamWriter(filePath))
         {
             XmlSerializer serializer = new XmlSerializer(typeof(GoBoard));
