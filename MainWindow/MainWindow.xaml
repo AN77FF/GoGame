@@ -1,9 +1,29 @@
 <Window x:Class="GoGame.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Go Game" Height="450" Width="800">
+        Title="Go Game" Height="600" Width="800">
     <Grid>
-        <Button Content="Show CPU List" Command="{Binding ShowCpuListCommand}" />
-        <Button Content="Edit CPU" Command="{Binding EditCpuCommand}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Игра в Го" FontSize="24" HorizontalAlignment="Center" Margin="10"/>
+        
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Board}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="19" Columns="19"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Command="{Binding DataContext.PlaceStoneCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                            CommandParameter="{Binding}"
+                            Background="{Binding StoneColor, Converter={StaticResource StoneColorConverter}}"
+                            Width="30" Height="30"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Window>
